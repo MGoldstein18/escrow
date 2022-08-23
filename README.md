@@ -1,35 +1,22 @@
-## Getting Started
+## Escrow
+A simple smart-contract-powered escrow service
 
-Create a project using this example:
+-------------------------------------------------------------
 
-```bash
-npx thirdweb create --contract --template hardhat-javascript-starter
-```
+Contract published to the Polygon Mumbai Testnet using thirdweb release and be viewed [here](https://thirdweb.com/mumbai/0x74786409799519465E89E871197c094F06961663/)
 
-You can start editing the page by modifying `contracts/MyContract.sol`.
+-------------------------------------------------------------
 
-To add functionality to your contracts, you can use the `@thirdweb-dev/contracts` package which provides base contracts and extensions to inherit. The package is already installed with this project. Head to our [Contracts SDK Docs](https://portal.thirdweb.com/thirdweb-deploy/contract-extensions) to learn more.
+### Functions
+#### `createTransaction`
+Initiate an escrow transaction with the address of the depositor (address which will pay money), address of the receiver (address withdrawing money), the amount (in wei) and the amount of time from now until the deadline (in seconds). Returns the `id` of the transaction and emits the `Create` event.
 
-## Deploying Contracts
+#### `deposit`
+Make the required payment into the smart contract. Takes the `id` of the escrow transaction as an argument. Can only pay the amount that is specified in that escrow transaction and only the depositor specified can make the payment. Can only be called before the transaction deadline. Emits the `Deposit` event.
 
-When you're ready to deploy your contracts, just run one of the following command to deploy you're contracts:
+#### `release`
+Takes the `id` of the escrow transaction as an argument. The parties of this transactionc can "sign off" on the transaction. Can only be called by the depositor and receiver of the specific escrow transaction. Can only be called if the deadline for the escrow transaction hasn't been reached. Emits the `Release` event.
 
-```bash
-npm run deploy
-# or
-yarn deploy
-```
+#### `withdraw`
+Can be used by the depositor, after the deadline, to withdraw their deposit if their is no sign off on the escrow transaction. Can be used by the receiver to withdraw once both parties have signed off on the escrow transaction. Can only be called if the transaction is not complete and the deposit was actually made. Emits the `Withdraw` event.
 
-## Releasing Contracts
-
-If you want to release a version of your contracts publicly, you can use one of the followings command:
-
-```bash
-npm run release
-# or
-yarn release
-```
-
-## Join our Discord!
-
-For any questions, suggestions, join our discord at [https://discord.gg/thirdweb](https://discord.gg/thirdweb).
