@@ -3,7 +3,7 @@ A simple smart-contract-powered escrow service
 
 -------------------------------------------------------------
 
-Contract published to the Polygon Mumbai Testnet using thirdweb release and be viewed [here](https://thirdweb.com/mumbai/0x74786409799519465E89E871197c094F06961663/)
+Contract published to the Polygon Mumbai Testnet using thirdweb release and be viewed [here](https://thirdweb.com/mumbai/0xF997D3229475FAa632B8864e719FD3278Ff81DD5/)
 
 -------------------------------------------------------------
 
